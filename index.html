@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="An overview of Elon Musk's ventures, technology projects, and entrepreneurial milestones.">
+<title>ELON | Ventures & Innovation</title>
+
+<style>
+:root {
+  --bg: #ffffff;
+  --panel: #f5f5f5;
+  --panel-2: #eeeeee;
+  --text: #171717;
+  --muted: #626262;
+  --red: #e82127;
+  --line: rgba(255,255,255,.12);
+  --max: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+button, input, select, textarea { font: inherit; }
+
+button, a, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wrap {
+  width: min(var(--max), calc(100% - 40px));
+  margin: 0 auto;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.brand {
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: .13em;
+}
+
+.brand span { color: var(--red); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  font-size: 13px;
+  color: #333;
+}
+
+.nav-links a:hover { color: var(--red); }
+
+.nav-cta, .btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: 1px solid var(--red);
+  background: var(--red);
+  color: #fff;
+  font-weight: 750;
+  font-size: 12px;
+  letter-spacing: .04em;
+  cursor: pointer;
+  transition: transform .2s, background .2s, border-color .2s;
+}
+
+.nav-cta:hover, .btn:hover {
+  transform: translateY(-2px);
+  background: #bd171c;
+  border-color: #bd171c;
+}
+
+.btn.secondary {
+  background: transparent;
+  border-color: rgba(255,255,255,.35);
+}
+
+.btn.secondary:hover {
+  border-color: var(--red);
+  background: rgba(232,33,39,.1);
+}
+
+.menu-toggle {
+  display: none;
+  border: 1px solid var(--line);
+  color: #171717;
+  background: #f4f4f4;
+  padding: 8px 12px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 760px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 180px;
+  background: linear-gradient(0deg, var(--bg), transparent);
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hero-slide img,
+.hero-slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  background: #fff;
+}
+
+.hero-slide video { object-fit: cover; object-position: center center; }
+
+.hero-media-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,.62) 0%,
+    rgba(255,255,255,.38) 26%,
+    rgba(255,255,255,.12) 60%,
+    rgba(255,255,255,.02) 100%
+  );
+}
+
+.hero-media-controls {
+  position: absolute;
+  z-index: 3;
+  right: 24px;
+  bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid rgba(30,30,30,.15);
+  background: rgba(255,255,255,.86);
+  backdrop-filter: blur(8px);
+  max-width: calc(100% - 28px);
+  flex-wrap: wrap;
+}
+
+.hero-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #a9a9a9;
+  cursor: pointer;
+}
+
+.hero-dot.active {
+  width: 24px;
+  border-radius: 8px;
+  background: var(--red);
+}
+
+.hero-media-label {
+  font-size: 10px;
+  color: #333;
+  margin-right: 5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.hero-media-pause {
+  border: 1px solid #c8c8c8;
+  background: #fff;
+  color: #222;
+  padding: 4px 7px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(700px, 75%);
+  padding: 86px 0 105px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #b21c22;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 2px;
+  background: var(--red);
+}
+
+h1 {
+  margin: 20px 0;
+  font-size: clamp(44px, 7vw, 82px);
+  line-height: .98;
+  letter-spacing: -.055em;
+  text-transform: uppercase;
+}
+
+h1 span { color: var(--red); }
+
+.hero p {
+  max-width: 560px;
+  color: #383838;
+  font-size: 17px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 44px;
+}
+
+.stat {
+  border-left: 2px solid var(--red);
+  padding-left: 12px;
+}
+
+.stat strong {
+  display: block;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.stat span {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+section { padding: 84px 0; }
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 25px;
+  margin-bottom: 32px;
+}
+
+.section-head h2 {
+  margin: 8px 0 0;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -.04em;
+}
+
+.section-head p {
+  color: var(--muted);
+  max-width: 450px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.section-label {
+  color: var(--red);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: .18em;
+  font-weight: 850;
+}
+
+.ventures-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.venture-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 245px;
+  padding: 26px;
+  background: linear-gradient(145deg, #fff, #f2f2f2);
+  border: 1px solid var(--line);
+  transition: transform .25s, border-color .25s;
+}
+
+.venture-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(232,33,39,.65);
+}
+
+.venture-image {
+  width: calc(100% + 52px);
+  height: 130px;
+  object-fit: cover;
+  display: block;
+  margin: -26px -26px 20px;
+  background: #eee;
+  border-bottom: 2px solid var(--red);
+}
+
+.venture-card .number {
+  color: var(--red);
+  font-size: 11px;
+  letter-spacing: .12em;
+  font-weight: 800;
+}
+
+.venture-card h3 {
+  font-size: 23px;
+  margin: 18px 0 9px;
+  letter-spacing: -.025em;
+}
+
+.venture-card p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 0 0 20px;
+}
+
+.tag {
+  display: inline-block;
+  border: 1px solid var(--line);
+  padding: 5px 8px;
+  color: #444;
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.story {
+  background: #f5f5f5;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 34px;
+}
+
+.milestone {
+  padding: 22px 20px;
+  border-left: 1px solid var(--line);
+}
+
+.milestone:first-child { border-left: 2px solid var(--red); }
+
+.milestone strong {
+  display: block;
+  font-size: 25px;
+  color: var(--red);
+}
+
+.milestone h3 { margin: 8px 0; font-size: 16px; }
+
+.milestone p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.note {
+  margin-top: 24px;
+  color: #666;
+  font-size: 11px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 44px;
+  align-items: start;
+}
+
+.contact-copy h2 {
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.03;
+  letter-spacing: -.04em;
+  margin: 12px 0 20px;
+}
+
+.contact-copy p { color: var(--muted); font-size: 14px; }
+
+.contact-card {
+  padding: 28px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+label {
+  display: block;
+  margin-bottom: 7px;
+  color: #333;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.field { margin-bottom: 17px; }
+
+input, select, textarea {
+  width: 100%;
+  border: 1px solid #353535;
+  background: #fff;
+  color: #171717;
+  padding: 13px 14px;
+  outline: none;
+  border-radius: 0;
+}
+
+input:focus, select:focus, textarea:focus { border-color: var(--red); }
+
+textarea { min-height: 135px; resize: vertical; }
+
+.form-message {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #b21c22;
+}
+
+footer {
+  padding: 26px 0;
+  border-top: 1px solid var(--line);
+  background: #f4f4f4;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  color: #666;
+  font-size: 11px;
+}
+
+.footer-brand {
+  color: #171717;
+  font-weight: 850;
+  letter-spacing: .12em;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.direct-contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 24px;
+}
+
+.direct-contact-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+}
+
+.floating-contact {
+  position: fixed;
+  z-index: 9999;
+  right: 12px;
+  bottom: 12px;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.floating-contact-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--red);
+  color: #fff;
+  box-shadow: 0 5px 18px rgba(0,0,0,.24);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.floating-contact-body {
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 58px;
+  width: 245px;
+  max-width: calc(100vw - 32px);
+  padding: 16px;
+  color: #fff;
+  background: #171717;
+  border: 1px solid #383838;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.32);
+}
+
+.floating-contact-body:not([hidden]) { display: block; }
+
+.floating-contact-note {
+  color: #bdbdbd;
+  font-size: 11px;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+.floating-contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 10px;
+  margin-top: 9px;
+  border-radius: 7px;
+  background: var(--red);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.floating-contact-link.zangi {
+  background: #222;
+  border: 1px solid #555;
+}
+
+@media (max-width: 850px) {
+  .hero-media-shade {
+    background: linear-gradient(90deg, rgba(255,255,255,.60), rgba(255,255,255,.18));
+  }
+
+  .hero-media-controls { right: 14px; bottom: 16px; }
+
+  .hero-slide img, .hero-slide video { object-position: center center; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+  }
+
+  .nav-links.open { display: flex; }
+  .menu-toggle { display: block; }
+  .nav-cta { display: none; }
+  .hero { min-height: 760px; }
+  .hero-content { width: 100%; padding: 80px 0 90px; }
+  .ventures-grid { grid-template-columns: repeat(2, 1fr); }
+  .timeline { grid-template-columns: repeat(2, 1fr); row-gap: 20px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+@media (max-width: 560px) {
+  .wrap { width: min(100% - 28px, var(--max)); }
+  .nav { min-height: 66px; }
+  .nav-links { top: 66px; }
+  .brand { font-size: 18px; }
+  .hero { min-height: 760px; }
+  .hero-content { padding: 66px 0 76px; }
+  .hero p { font-size: 15px; }
+  .hero-stats { gap: 17px; }
+  .stat strong { font-size: 17px; }
+  section { padding: 62px 0; }
+  .section-head { display: block; }
+  .section-head p { margin-top: 15px; }
+  .ventures-grid { grid-template-columns: 1fr; }
+  .venture-card { min-height: 205px; }
+  .timeline { grid-template-columns: 1fr; }
+  .milestone { padding: 15px 18px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .contact-card { padding: 20px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .direct-contact-actions { flex-direction: column; }
+  .direct-contact-actions a { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+  .hero-slide { transition: none; }
+}
+
+.site-video-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: #fff;
+  pointer-events: none;
+}
+
+.site-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+
+.site-bg-video.active { opacity: 1; }
+
+.site-bg-wash {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,.30);
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+}
+
+.hero { background: transparent !important; }
+
+@media (max-width: 700px) {
+  .site-bg-video { object-position: center; }
+  .site-bg-wash { background: rgba(255,255,255,.32); }
+}
+
+@media (max-width: 520px) {
+  .direct-contact-actions { flex-direction: column; }
+  .direct-contact-actions a { width: 100%; box-sizing: border-box; }
+}
+
+/* Improved contrast for the WhatsApp and Zangi contact buttons */
+.direct-contact-actions a {
+  color: #ffffff !important;
+  font-weight: 800;
+  border-width: 2px;
+  border-style: solid;
+  text-shadow: none;
+  opacity: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+}
+.direct-contact-actions a:first-child {
+  background: #168b45 !important;
+  border-color: #168b45 !important;
+  color: #ffffff !important;
+}
+.direct-contact-actions a:last-child {
+  background: #242424 !important;
+  border-color: #242424 !important;
+  color: #ffffff !important;
+}
+.direct-contact-actions a:hover,
+.direct-contact-actions a:focus-visible {
+  filter: brightness(.9);
+  outline: 3px solid rgba(232, 33, 39, .28);
+  outline-offset: 3px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="site-video-background" aria-hidden="true">
+  <video class="site-bg-video active" id="siteBgVideoA" muted autoplay playsinline loop preload="auto">
+    <source src="hero-video-2.mp4" type="video/mp4">
+  </video>
+
+  <video class="site-bg-video" id="siteBgVideoB" muted autoplay playsinline loop preload="auto">
+    <source src="hero-video-3.mp4" type="video/mp4">
+  </video>
+
+  <div class="site-bg-wash"></div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="ELON Ventures home">ELON<span>.</span></a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#ventures">Ventures</a>
+      <a href="#milestones">Milestones</a>
+      <a href="#about">Overview</a>
+      <a href="#contact">Business Inquiries</a>
+    </nav>
+
+    <a class="nav-cta" href="#contact">MAKE AN INQUIRY ↗</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
+      MENU ☰
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="hero-media" id="heroMedia" aria-label="Hero image and video slideshow">
+
+      <div class="hero-slide active" data-slide="0">
+        <img src="elon-hero.jpg" alt="Portrait image used for the website hero">
+      </div>
+
+      <div class="hero-slide" data-slide="1">
+        <img src="tesla-flying-car.jpg" alt="Tesla flying car concept presentation">
+      </div>
+
+      <div class="hero-slide" data-slide="2">
+        <img src="spacex-starship.jpg" alt="SpaceX Starship launch facility">
+      </div>
+
+      <div class="hero-slide" data-slide="3">
+        <img src="x-platform.jpg" alt="X social platform artwork">
+      </div>
+
+      <div class="hero-slide" data-slide="4">
+        <img src="xai.jpg" alt="xAI announcement artwork">
+      </div>
+
+      <div class="hero-slide" data-slide="5">
+        <video id="heroVideo" src="hero-video.mp4" muted playsinline preload="metadata" aria-label="Featured hero video one"></video>
+      </div>
+
+      <div class="hero-slide" data-slide="6">
+        <video id="heroVideo2" src="hero-video-2.mp4" muted playsinline preload="metadata" aria-label="Featured hero video two"></video>
+      </div>
+
+      <div class="hero-slide" data-slide="7">
+        <video id="heroVideo3" src="hero-video-3.mp4" muted playsinline preload="metadata" aria-label="Featured hero video three"></video>
+      </div>
+
+      <div class="hero-media-shade"></div>
+
+      <div class="hero-media-controls" aria-label="Slideshow controls">
+        <span class="hero-media-label" id="heroMediaLabel">PHOTO 1 / 8</span>
+        <button class="hero-dot active" type="button" data-go-slide="0" aria-label="Show portrait photo"></button>
+        <button class="hero-dot" type="button" data-go-slide="1" aria-label="Show Tesla image"></button>
+        <button class="hero-dot" type="button" data-go-slide="2" aria-label="Show SpaceX image"></button>
+        <button class="hero-dot" type="button" data-go-slide="3" aria-label="Show X image"></button>
+        <button class="hero-dot" type="button" data-go-slide="4" aria-label="Show xAI image"></button>
+        <button class="hero-dot" type="button" data-go-slide="5" aria-label="Show first video"></button>
+        <button class="hero-dot" type="button" data-go-slide="6" aria-label="Show second video"></button>
+        <button class="hero-dot" type="button" data-go-slide="7" aria-label="Show third video"></button>
+        <button class="hero-media-pause" type="button" id="heroPause" aria-pressed="false">PAUSE</button>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="hero-content">
+        <div class="eyebrow">Entrepreneurship · Technology · Tomorrow</div>
+        <h1>Building<br>what comes <span>next.</span></h1>
+
+        <p>An independent overview of Elon Musk's entrepreneurial journey, the companies associated with him, and the technologies shaping conversations about the future.</p>
+
+        <div class="hero-actions">
+          <a class="btn" href="#ventures">EXPLORE THE VENTURES ↘</a>
+          <a class="btn secondary" href="#contact">BUSINESS INQUIRIES</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat"><strong>Space</strong><span>Launch & exploration</span></div>
+          <div class="stat"><strong>Energy</strong><span>Electric & storage</span></div>
+          <div class="stat"><strong>AI</strong><span>Emerging technology</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ventures">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-label">01 / The portfolio</div>
+          <h2>Ventures &amp; ideas<br>with global reach.</h2>
+        </div>
+        <p>Explore selected companies and projects connected with Elon Musk. Each has a distinct focus, from transport and energy to space, communications, and artificial intelligence.</p>
+      </div>
+
+      <div class="ventures-grid">
+        <article class="venture-card reveal">
+          <img class="venture-image" src="tesla-flying-car.jpg" alt="Tesla concept vehicle presentation">
+          <span class="number">01 — MOBILITY & ENERGY</span>
+          <h3>Tesla</h3>
+          <p>Electric vehicles, energy storage, solar products, charging infrastructure, and work on vehicle automation and robotics.</p>
+          <span class="tag">Electric mobility</span>
+        </article>
+
+        <article class="venture-card reveal">
+          <img class="venture-image" src="spacex-starship.jpg" alt="SpaceX Starship launch facility">
+          <span class="number">02 — SPACE</span>
+          <h3>SpaceX</h3>
+          <p>Launch vehicles, reusable rocket systems, spacecraft, and programs intended to expand access to space.</p>
+          <span class="tag">Spaceflight</span>
+        </article>
+
+        <article class="venture-card reveal">
+          <span class="number">03 — CONNECTIVITY</span>
+          <h3>Starlink</h3>
+          <p>A satellite internet service developed by SpaceX to provide connectivity in locations where traditional networks can be limited.</p>
+          <span class="tag">Satellite internet</span>
+        </article>
+
+        <article class="venture-card reveal">
+          <img class="venture-image" src="x-platform.jpg" alt="X social platform artwork">
+          <span class="number">04 — DIGITAL PLATFORMS</span>
+          <h3>X</h3>
+          <p>A social platform for public conversation, news, creator content, and digital communication.</p>
+          <span class="tag">Social technology</span>
+        </article>
+
+        <article class="venture-card reveal">
+          <img class="venture-image" src="xai.jpg" alt="xAI announcement artwork">
+          <span class="number">05 — ARTIFICIAL INTELLIGENCE</span>
+          <h3>xAI</h3>
+          <p>An artificial intelligence company associated with the development of Grok and AI systems intended to understand and assist with information.</p>
+          <span class="tag">AI research</span>
+        </article>
+
+        <article class="venture-card reveal">
+          <span class="number">06 — NEUROTECHNOLOGY</span>
+          <h3>Neuralink</h3>
+          <p>A neurotechnology company researching brain-computer interfaces, including potential medical applications.</p>
+          <span class="tag">Neurotechnology</span>
+        </article>
+
+        <article class="venture-card reveal">
+          <span class="number">07 — INFRASTRUCTURE</span>
+          <h3>The Boring Company</h3>
+          <p>Develops tunneling technology and underground transportation concepts intended to address infrastructure challenges.</p>
+          <span class="tag">Transportation</span>
+        </article>
+
+        <article class="venture-card reveal">
+          <span class="number">08 — EARLY VENTURES</span>
+          <h3>Zip2</h3>
+          <p>An early software company that provided online city guides and business directories before its acquisition in 1999.</p>
+          <span class="tag">Entrepreneurial beginnings</span>
+        </article>
+
+        <article class="venture-card reveal">
+          <span class="number">09 — ONLINE PAYMENTS</span>
+          <h3>PayPal</h3>
+          <p>Musk founded X.com, an online financial services company that later became part of the business that evolved into PayPal.</p>
+          <span class="tag">Financial technology</span>
+        </article>
+      </div>
+
+      <p class="note">This is a selective introductory overview, not a complete list of investments or a statement that every company is wholly owned by one person. Company structures and roles can change.</p>
+    </div>
+  </section>
+
+  <section class="story" id="milestones">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-label">02 / Selected history</div>
+          <h2>Milestones on the journey.</h2>
+        </div>
+        <p>A short timeline of widely documented business milestones. We can expand this section with sourced dates, achievements, and additional images as the project develops.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="milestone reveal">
+          <strong>1995</strong>
+          <h3>Zip2 begins</h3>
+          <p>Musk co-founded Zip2, an early internet software company focused on city guides and business directories.</p>
+        </article>
+
+        <article class="milestone reveal">
+          <strong>1999</strong>
+          <h3>Online finance</h3>
+          <p>After the sale of Zip2, he co-founded X.com, an online financial services company.</p>
+        </article>
+
+        <article class="milestone reveal">
+          <strong>2002</strong>
+          <h3>SpaceX founded</h3>
+          <p>SpaceX was established with the goal of lowering the cost of space transportation.</p>
+        </article>
+
+        <article class="milestone reveal">
+          <strong>2000s</strong>
+          <h3>Electric vehicle era</h3>
+          <p>Musk became closely associated with Tesla's growth and the broader development of electric mobility.</p>
+        </article>
+      </div>
+
+      <p class="note">Timeline is intentionally brief and will need further sourcing and review before publication as a comprehensive biography.</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-label">03 / The bigger picture</div>
+          <h2>Technology across<br>different frontiers.</h2>
+        </div>
+        <p>These ventures operate in different industries, but many focus on large technical challenges: how people move, how energy is stored, how information travels, and how humans interact with emerging technology.</p>
+      </div>
+
+      <div class="ventures-grid">
+        <article class="venture-card reveal">
+          <span class="number">FRONTIER 01</span>
+          <h3>Move differently</h3>
+          <p>Electric vehicles, charging networks, and new transportation infrastructure.</p>
+        </article>
+
+        <article class="venture-card reveal">
+          <span class="number">FRONTIER 02</span>
+          <h3>Connect further</h3>
+          <p>Satellite connectivity and digital platforms that help people communicate and access information.</p>
+        </article>
+
+        <article class="venture-card reveal">
+          <span class="number">FRONTIER 03</span>
+          <h3>Explore &amp; compute</h3>
+          <p>Spaceflight, AI research, and neurotechnology research with potential long-term applications.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="contact">
+    <div class="wrap contact-grid">
+      <div class="contact-copy reveal">
+        <div class="section-label">04 / Get in touch</div>
+        <h2>Have a business inquiry?</h2>
+        <p>Use this form to prepare a partnership, media, or general business inquiry.</p>
+      </div>
+
+      <div class="contact-card reveal">
+        <div class="direct-contact-actions" aria-label="Direct contact options">
+          <a class="btn secondary" href="https://wa.me/message/5PQSIR73JF4TC1" target="_blank" rel="noopener noreferrer">CONTACT ON WHATSAPP ↗</a>
+          <a class="btn secondary" href="https://services.zangi.com/dl/conversation/2126411538" target="_blank" rel="noopener noreferrer">CONTACT ON ZANGI ↗</a>
+        </div>
+
+        <form id="inquiryForm">
+          <div class="form-row">
+            <div class="field">
+              <label for="fullName">YOUR NAME</label>
+              <input id="fullName" name="fullName" autocomplete="name" required maxlength="100" placeholder="Enter your name">
+            </div>
+
+            <div class="field">
+              <label for="email">EMAIL ADDRESS</label>
+              <input id="email" name="email" type="email" autocomplete="email" required maxlength="160" placeholder="you@example.com">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="category">INQUIRY TYPE</label>
+            <select id="category" name="category" required>
+              <option value="">Select a category</option>
+              <option>Business proposal</option>
+              <option>Partnership</option>
+              <option>Media inquiry</option>
+              <option>Technology question</option>
+              <option>General inquiry</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">YOUR MESSAGE</label>
+            <textarea id="message" name="message" required maxlength="3000" placeholder="Briefly describe your inquiry..."></textarea>
+          </div>
+
+          <button class="btn" type="submit">PREVIEW INQUIRY ↗</button>
+          <div class="form-message" id="formMessage" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">ELON<span style="color:var(--red)">.</span> VENTURES</div>
+    <div>Ventures &amp; Innovation</div>
+    <div>© <span id="year"></span></div>
+  </div>
+</footer>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.textContent = open ? 'CLOSE ✕' : 'MENU ☰';
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.textContent = 'MENU ☰';
+  });
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const observer = ('IntersectionObserver' in window)
+  ? new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 })
+  : null;
+
+document.querySelectorAll('.reveal').forEach(el => {
+  if (observer) observer.observe(el);
+  else el.classList.add('visible');
+});
+
+/* Hero slideshow: images and videos */
+const heroSlides = Array.from(document.querySelectorAll('.hero-slide'));
+const heroDots = Array.from(document.querySelectorAll('.hero-dot'));
+const heroVideos = Array.from(document.querySelectorAll('.hero-slide video'));
+const heroLabel = document.getElementById('heroMediaLabel');
+const heroPause = document.getElementById('heroPause');
+
+let heroIndex = 0;
+let heroTimer = null;
+let heroPaused = false;
+
+function stopHeroVideos() {
+  heroVideos.forEach(video => {
+    video.pause();
+    try { video.currentTime = 0; } catch (_) {}
+  });
+}
+
+function startHeroTimer(delay = 6500) {
+  if (heroTimer) clearTimeout(heroTimer);
+  if (!heroPaused) {
+    heroTimer = setTimeout(() => showHeroSlide(heroIndex + 1), delay);
+  }
+}
+
+function showHeroSlide(index) {
+  heroIndex = (index + heroSlides.length) % heroSlides.length;
+
+  stopHeroVideos();
+
+  heroSlides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === heroIndex);
+  });
+
+  heroDots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === heroIndex);
+    dot.setAttribute('aria-current', i === heroIndex ? 'true' : 'false');
+  });
+
+  const video = heroSlides[heroIndex].querySelector('video');
+
+  heroLabel.textContent =
+    (video ? 'VIDEO ' : 'PHOTO ') +
+    (heroIndex + 1) + ' / ' + heroSlides.length;
+
+  if (video && !heroPaused) {
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(() => {});
+    }
+  }
+
+  startHeroTimer(video ? 12000 : 6500);
+}
+
+heroDots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    showHeroSlide(Number(dot.dataset.goSlide));
+  });
+});
+
+heroPause.addEventListener('click', () => {
+  heroPaused = !heroPaused;
+  heroPause.textContent = heroPaused ? 'PLAY' : 'PAUSE';
+  heroPause.setAttribute('aria-pressed', String(heroPaused));
+
+  if (heroPaused) {
+    if (heroTimer) clearTimeout(heroTimer);
+    stopHeroVideos();
+  } else {
+    showHeroSlide(heroIndex);
+  }
+});
+
+heroVideos.forEach(video => {
+  video.addEventListener('ended', () => {
+    if (!heroPaused && heroSlides[heroIndex].contains(video)) {
+      showHeroSlide(heroIndex + 1);
+    }
+  });
+});
+
+showHeroSlide(0);
+
+/* Contact form preview */
+document.getElementById('inquiryForm').addEventListener('submit', event => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  if (!form.reportValidity()) return;
+
+  const data = new FormData(form);
+
+  const preview = {
+    name: String(data.get('fullName') || '').trim(),
+    email: String(data.get('email') || '').trim(),
+    category: String(data.get('category') || '').trim(),
+    message: String(data.get('message') || '').trim()
+  };
+
+  document.getElementById('formMessage').textContent =
+    'Preview ready for ' + preview.name +
+    '. Message sending is not connected yet; no information has been sent or stored.';
+
+  console.info('Inquiry preview (local only):', preview);
+});
+
+/* Background videos cross-fade */
+(() => {
+  const vids = [
+    document.getElementById('siteBgVideoA'),
+    document.getElementById('siteBgVideoB')
+  ].filter(Boolean);
+
+  if (vids.length !== 2) return;
+
+  let current = 0;
+
+  const playMuted = video => {
+    video.muted = true;
+    const p = video.play();
+
+    if (p && typeof p.catch === 'function') {
+      p.catch(() => {});
+    }
+  };
+
+  vids.forEach(playMuted);
+
+  function crossFade() {
+    const next = (current + 1) % vids.length;
+
+    try { vids[next].currentTime = 0; } catch (_) {}
+
+    playMuted(vids[next]);
+    vids[next].classList.add('active');
+    vids[current].classList.remove('active');
+
+    current = next;
+  }
+
+  window.setInterval(crossFade, 12000);
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) vids.forEach(playMuted);
+  });
+})();
+
+/* CONTACT +: initialize after the button markup is available */
+(() => {
+  function initializeContactButton() {
+    const contactButton = document.getElementById('floatingContactToggle');
+    const contactSection = document.getElementById('contact');
+    if (!contactButton || !contactSection) return;
+    if (contactButton.dataset.contactInitialized === 'true') return;
+    contactButton.dataset.contactInitialized = 'true';
+
+    contactButton.addEventListener('click', () => {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      contactSection.setAttribute('tabindex', '-1');
+      window.setTimeout(() => {
+        contactSection.focus({ preventScroll: true });
+      }, 450);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeContactButton, { once: true });
+  } else {
+    initializeContactButton();
+  }
+})();
+</script>
+
+<aside class="floating-contact" id="floatingContact" aria-label="Contact links">
+  <button
+    class="floating-contact-toggle"
+    id="floatingContactToggle"
+    type="button"
+    aria-label="Go to contact section">
+    CONTACT +
+  </button>
+</aside>
+
+</body>
+</html>
